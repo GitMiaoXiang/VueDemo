@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>非组件传值问题</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<child content="Dell"></child>
+		<child content="Lee"></child>
+	</div>
+<script type="text/javascript">
+	Vue.prototype.bus = new Vue();
+	Vue.component('child',{
+		data: function(){
+			return {
+				selfContent: this.content
+			}
+		},
+		props:{
+			content:String
+		},
+		// props:['']
+		template:'<div @click="handleClick">{{selfContent}}</div>',
+		methods:{
+			handleClick:function () {
+				this.bus.$emit('change',this.content)
+			}
+		},
+		mounted:function(){
+			var this_ = this
+			this.bus.$on('change',function(msg){
+				this_.selfContent = msg
+			})
+		}
+	})
+	var vm = new Vue({
+		el:'#app'
+	})
+</script>
+</body>
+</html>

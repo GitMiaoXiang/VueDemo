@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input v-model="message" placeholder="edit me">
+    <p>Message is: {{ message }}</p>
+    <span>Multiline message is:</span>
+    <p style="white-space: pre-line;">{{ message }}</p>
+    <br>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{checked}}</label>
+    <div id='example-3'>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked names: {{ checkedNames }}</span>
+    </div>
+    <div id="example-4">
+        <input type="radio" id="one" value="One" v-model="picked">
+        <label for="one">One</label>
+        <br>
+        <input type="radio" id="two" value="Two" v-model="picked">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked: {{ picked }}</span>
+    </div>
+    <select v-model="selected">
+        <option v-for="option in options" value="adc" v-bind:value="option.value">
+            {{option.text}}
+        </option>
+    </select>
+    <span>Selected:{{selected}}</span>
+    <input type="checkbox" v-model="toggle" true-value="yes" false-value="no">
+    <input type="radio" v-model="pick" v-bind:value="a">
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'111',
+            checked:true,
+            checkedNames:[
+
+            ],
+            picked:true,
+            selected:'',
+            options:[
+                {text:'One',value:'A'},
+                {text:'Two',value:'B'},
+                {text:'Three',value:'C'},
+                {text:'Fore',value:'D'}
+            ],
+            toggle:'yes',
+            pick:'a',
+            a:'a'
+        }
+    })
+</script>
+</body>
+</html>

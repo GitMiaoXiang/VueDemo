@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            color: #aa6622;
+        }
+    </style>
+</head>
+<body>
+<div v-bind:class = "{active: isActive}"></div>
+<div class="static" v-bind:class="{active: isActive, 'text-danger':hasError}">1111</div>
+<div id="objectStyle" v-bind:style = "styleObject">哈哈
+    <span v-for="n in 10">{{n}}</span>
+    <ul v-if="numbers.length">
+        <li v-for="number in numbers">
+            {{number}}
+        </li>
+    </ul>
+    <p v-else>
+        No todos left!
+    </p>
+</div>
+<!--<span v-for="n in 10">{{n}}</span>-->
+<script>
+    Vue.component('my-commponent',{
+        template:'<p class="active">Hi</p>'
+    })
+    var vm = new Vue({
+        el:'.static',
+        data:{
+            isActive:true,
+            hasError:false
+        }
+    })
+    var vm1 = new Vue({
+        el: '#objectStyle',
+        data:{
+            styleObject:{
+                color: 'red',
+                fontSize: '13px'
+            },
+            numbers:[
+
+            ]
+        }
+    })
+
+</script>
+</body>
+</html>
